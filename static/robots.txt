@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /logout
+Disallow: /upload
+Disallow: /profile
+
+Sitemap: https://nexusplayappstore-1.onrender.com/sitemap.xml

@@ -383,5 +383,9 @@ def download_game(game_id):
 def serve_image(filename):
     return send_from_directory(app.config['IMAGES_FOLDER'], filename)
 
+@app.route('/robots.txt')
+def robots():
+    return send_from_directory(app.config['static_folder'], 'robots.txt')
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

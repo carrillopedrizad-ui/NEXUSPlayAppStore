@@ -3,7 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}NexusPlay{% endblock %}</title>
+    <title>{% block title %}NexusPlay - Tu Plataforma de Juegos Indie{% endblock %}</title>
+    <meta name="description" content="NexusPlay: La mejor tienda de juegos indie. Descarga, juega y sube tus propias creaciones gratis.">
+    <meta name="keywords" content="juegos indie, nexusplay, descargar juegos, subir juegos, gaming, indie games store">
+    <meta name="author" content="NexusPlay Team">
+    
+    <!-- Open Graph (para que se vea bien en redes sociales) -->
+    <meta property="og:title" content="NexusPlay - Comunidad de Juegos Indie">
+    <meta property="og:description" content="Descarga y comparte juegos increíbles en la comunidad de NexusPlay.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nexusplayappstore-1.onrender.com/">
+
     <!-- FAVICON (ÍCONO) -->
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
