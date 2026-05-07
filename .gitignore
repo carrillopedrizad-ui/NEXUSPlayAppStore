@@ -1,0 +1,14 @@
+# Ignorar la carpeta de archivos subidos (muy pesada)
+uploads/
+
+# Ignorar la base de datos local (se crea sola en el servidor)
+nexusplay.db
+
+# Ignorar archivos de Python compilado
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignorar archivos temporales
+*.zip
+make_zip.py

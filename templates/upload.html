@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block title %}Subir Juego - NexusPlay{% endblock %}
+{% block content %}
+<div class="upload-container" style="max-width: 800px;">
+    <h1>Publicar un Juego o App (GRATIS)</h1>
+    <p style="color: var(--text-muted); margin-bottom: 2rem; text-align: center;">Comparte tu proyecto con la comunidad. Sin cuentas, sin comisiones.</p>
+    <form method="POST" enctype="multipart/form-data">
+        <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 300px;">
+                <div class="form-group">
+                    <label for="title">Título del Juego</label>
+                    <input type="text" id="title" name="title" required placeholder="Ej. Cyber Ninja 3000">
+                </div>
+                
+                <div class="form-group">
+                    <label for="developer">Tu Nombre / Estudio</label>
+                    <input type="text" id="developer" name="developer" required placeholder="Ej. Juan Pérez">
+                </div>
+                
+                <div class="form-group">
+                    <label for="platform">Plataforma</label>
+                    <select id="platform" name="platform" required>
+                        <option value="PC (.exe)">PC (.exe)</option>
+                        <option value="Android (.apk)">Android (.apk)</option>
+                        <option value="Web (HTML/Zip)">Juego Web (.zip con index.html)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Categoría</label>
+                    <select id="category" name="category" required>
+                        {% for cat in categories %}
+                        <option value="{{ cat }}">{{ cat }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div style="flex: 1; min-width: 300px;">
+                <div class="form-group">
+                    <label for="bg_color">Color de Fondo de la Página</label>
+                    <input type="color" id="bg_color" name="bg_color" value="#0b0d14" style="width: 100%; height: 50px; background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: 8px; cursor: pointer; padding: 5px;">
+                </div>
+
+                <div class="form-group">
+                    <label>Portada Principal (Obligatoria)</label>
+                    <input type="file" name="image" accept=".png,.jpg,.jpeg,.gif" required style="width: 100%; padding: 0.5rem; background: rgba(0,0,0,0.3); border-radius: 8px; color: white;">
+                </div>
+
+                <div class="form-group">
+                    <label>Galería (Opcional - Selecciona varias fotos)</label>
+                    <input type="file" name="screenshots" accept=".png,.jpg,.jpeg,.gif" multiple style="width: 100%; padding: 0.5rem; background: rgba(0,0,0,0.3); border-radius: 8px; color: white;">
+                </div>
+
+                <div class="form-group">
+                    <label>Archivo del Juego (.exe, .apk, .zip)</label>
+                    <input type="file" name="game_file" accept=".exe,.apk,.zip" required style="width: 100%; padding: 0.5rem; background: rgba(0,0,0,0.3); border-radius: 8px; color: white;">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 1rem;">
+            <label for="description">Descripción</label>
+            <textarea id="description" name="description" rows="5" required placeholder="Escribe una descripción épica sobre tu juego..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit" style="margin-top: 2rem;">Publicar en NexusPlay</button>
+    </form>
+</div>
+{% endblock %}

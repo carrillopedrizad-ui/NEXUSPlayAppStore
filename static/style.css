@@ -1,0 +1,435 @@
+:root {
+    --bg-main: #050510; /* Espacio profundo */
+    --bg-secondary: #0f1026;
+    --text-main: #ffffff;
+    --text-muted: #8b9bb4;
+    --accent: #b400ff; /* Violeta Neón */
+    --accent-glow: rgba(180, 0, 255, 0.6);
+    --secondary: #00e5ff; /* Cyan Neón */
+    --secondary-glow: rgba(0, 229, 255, 0.6);
+    --border-color: rgba(0, 229, 255, 0.2);
+    --card-bg: rgba(15, 16, 38, 0.8);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* La fuente principal es Rajdhani (Cyberpunk/Tech) */
+    font-family: 'Rajdhani', sans-serif;
+    background-color: var(--bg-main);
+    /* Patrón de cuadrícula cósmica sutil */
+    background-image: 
+        linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    color: var(--text-main);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+h1, h2, h3, .logo {
+    /* Títulos con Orbitron (Futurista) */
+    font-family: 'Orbitron', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-main);
+    transition: all 0.3s ease;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: rgba(5, 5, 16, 0.8);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 30px rgba(0, 229, 255, 0.1);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-shadow: 0 0 10px var(--secondary-glow);
+}
+
+.logo span {
+    color: var(--accent);
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.nav-links a:hover {
+    color: var(--secondary);
+    text-shadow: 0 0 8px var(--secondary-glow);
+}
+
+.btn-upload {
+    background: linear-gradient(135deg, var(--secondary), var(--accent));
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    color: #fff !important;
+    font-weight: bold;
+    box-shadow: 0 0 15px var(--accent-glow);
+    transition: all 0.3s ease;
+    border: none;
+    text-transform: uppercase;
+}
+
+.btn-upload:hover {
+    box-shadow: 0 0 25px var(--secondary-glow);
+    transform: translateY(-2px);
+}
+
+/* Contenedor Principal */
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+/* Botones genéricos */
+.btn-buy, .btn-download, .btn-submit {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-buy {
+    background: linear-gradient(135deg, #b400ff, #00e5ff);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(180, 0, 255, 0.4);
+}
+
+.btn-buy:hover {
+    box-shadow: 0 0 30px rgba(0, 229, 255, 0.6);
+    transform: translateY(-3px);
+}
+
+.btn-download {
+    background: transparent;
+    border: 2px solid #00e5ff;
+    color: #00e5ff;
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.2) inset;
+}
+
+.btn-download:hover {
+    background: rgba(0, 229, 255, 0.1);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.4) inset, 0 0 20px rgba(0, 229, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-submit {
+    background: var(--accent);
+    color: white;
+    width: 100%;
+    border: none;
+    font-size: 1.1rem;
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.btn-submit:hover {
+    background: #c933ff;
+    box-shadow: 0 0 25px var(--accent-glow);
+    transform: translateY(-2px);
+}
+
+/* Grid de Juegos */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+/* Tarjetas Neon Cyberpunk */
+.game-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+.game-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 16px;
+    border: 2px solid transparent;
+    background: linear-gradient(135deg, var(--secondary), var(--accent)) border-box;
+    -webkit-mask:
+        linear-gradient(#fff 0 0) padding-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.game-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(180, 0, 255, 0.2), 0 0 20px rgba(0, 229, 255, 0.2);
+}
+
+.game-card:hover::before {
+    opacity: 1;
+}
+
+.card-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-title {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255,255,255,0.3);
+}
+
+.card-developer {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+.card-platform, .card-category {
+    background: rgba(0, 229, 255, 0.1);
+    color: var(--secondary);
+    padding: 0.3rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    text-transform: uppercase;
+}
+
+.price-tag {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    font-weight: 800;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    box-shadow: 0 0 15px rgba(0, 230, 118, 0.5);
+    z-index: 10;
+}
+
+/* Flashes y Formularios */
+.flashes {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.flashes li {
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.flashes li.success {
+    background: rgba(0, 230, 118, 0.2);
+    color: #00e676;
+    border: 1px solid #00e676;
+}
+
+.flashes li.error {
+    background: rgba(255, 51, 102, 0.2);
+    color: #ff3366;
+    border: 1px solid #ff3366;
+}
+
+.upload-container {
+    background: var(--card-bg);
+    padding: 3rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    margin: 0 auto;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8), 0 0 20px rgba(0, 229, 255, 0.1) inset;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--secondary);
+    font-weight: 600;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-main);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* Filtros */
+.category-filters {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* Detalles del Juego */
+.details-container {
+    display: flex;
+    gap: 3rem;
+    background: var(--card-bg);
+    padding: 3rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    margin-top: 2rem;
+    box-shadow: 0 0 40px rgba(0,0,0,0.8);
+    flex-wrap: wrap;
+}
+
+.details-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.details-info {
+    flex: 1.5;
+    min-width: 300px;
+}
+
+/* Utilities */
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .btn-upload {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    .container {
+        padding: 0 1rem;
+        margin: 1rem auto;
+    }
+
+    h1 {
+        font-size: 2rem !important;
+    }
+
+    .details-container {
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+
+    .upload-container {
+        padding: 1.5rem;
+    }
+    
+    .games-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .category-filters {
+        justify-content: center;
+    }
+}

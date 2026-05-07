@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Iniciar Sesión - NexusPlay{% endblock %}
+{% block content %}
+<div class="upload-container" style="max-width: 400px; text-align: center;">
+    <h1 style="color: var(--accent); text-shadow: 0 0 10px var(--accent);">Iniciar Sesión</h1>
+    
+    <form method="POST" style="margin-top: 2rem;">
+        <div class="form-group" style="text-align: left;">
+            <label>Nombre de Usuario</label>
+            <input type="text" name="username" required placeholder="Tu alias de creador">
+        </div>
+        <div class="form-group" style="text-align: left;">
+            <label>Contraseña</label>
+            <input type="password" name="password" required style="width: 100%; padding: 1rem; background: rgba(0,0,0,0.5); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-main);">
+        </div>
+        <button type="submit" class="btn-submit">Entrar al Nexus</button>
+    </form>
+    <p style="margin-top: 1.5rem;">¿No tienes cuenta? <a href="{{ url_for('register') }}" style="color: var(--accent); font-weight: bold;">Regístrate gratis</a></p>
+</div>
+{% endblock %}

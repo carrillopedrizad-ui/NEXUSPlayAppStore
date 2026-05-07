@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Registro - NexusPlay{% endblock %}
+{% block content %}
+<div class="upload-container" style="max-width: 400px; text-align: center;">
+    <h1 style="color: #00e5ff; text-shadow: 0 0 10px #00e5ff;">Crear Cuenta</h1>
+    
+    <form method="POST" style="margin-top: 2rem;">
+        <div class="form-group" style="text-align: left;">
+            <label>Nombre de Usuario</label>
+            <input type="text" name="username" required placeholder="Cómo te conocerá la comunidad">
+        </div>
+        <div class="form-group" style="text-align: left;">
+            <label>Contraseña</label>
+            <input type="password" name="password" required style="width: 100%; padding: 1rem; background: rgba(0,0,0,0.5); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-main);">
+        </div>
+        <button type="submit" class="btn-submit" style="background: linear-gradient(135deg, #00e5ff, #b400ff);">Registrarme</button>
+    </form>
+    <p style="margin-top: 1.5rem;">¿Ya eres miembro? <a href="{{ url_for('login') }}" style="color: #00e5ff; font-weight: bold;">Inicia sesión</a></p>
+</div>
+{% endblock %}

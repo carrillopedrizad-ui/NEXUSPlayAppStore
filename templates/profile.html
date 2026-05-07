@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Mi Perfil - NexusPlay{% endblock %}
+{% block content %}
+<div class="details-container" style="border: 1px solid var(--accent); box-shadow: 0 0 30px rgba(180, 0, 255, 0.2);">
+    <div class="details-info">
+        <h1 style="font-size: 2.5rem; color: white;">Piloto: <span style="color: var(--accent); text-shadow: 0 0 10px var(--accent);">{{ user.username }}</span></h1>
+        <hr style="border-color: var(--border-color); margin: 1.5rem 0;">
+        <p style="color: var(--text-muted);">Bienvenido a tu panel central del Nexus. Aquí puedes gestionar los juegos que has creado.</p>
+    </div>
+</div>
+
+<h2 style="margin-top: 3rem; margin-bottom: 1rem; color: #00e5ff; text-shadow: 0 0 10px rgba(0,229,255,0.5);">Juegos Publicados por ti</h2>
+<div class="games-grid">
+    {% for game in my_games %}
+    <a href="{{ url_for('game_details', game_id=game.id) }}" class="game-card">
+        <img src="{{ url_for('serve_image', filename=game.image_filename) }}" alt="{{ game.title }}" class="card-img">
+        <div class="card-content">
+            <h2 class="card-title">{{ game.title }}</h2>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
+                <div class="card-platform">{{ game.platform }}</div>
+            </div>
+            <div style="color: var(--text-muted); font-size: 0.9rem;">📥 {{ game.downloads }} Descargas</div>
+            <span style="color: var(--accent); font-weight: bold; margin-top: 1rem; display: block; text-shadow: 0 0 5px var(--accent);">Tú eres el creador</span>
+        </div>
+    </a>
+    {% else %}
+    <p style="color: var(--text-muted); padding: 2rem; background: rgba(0,0,0,0.5); border-radius: 12px; border: 1px solid var(--border-color);">
+        Aún no has subido ningún juego. ¡<a href="{{ url_for('upload_game') }}" style="color: var(--accent);">Empieza a crear</a> y la comunidad jugará tus obras!
+    </p>
+    {% endfor %}
+</div>
+{% endblock %}

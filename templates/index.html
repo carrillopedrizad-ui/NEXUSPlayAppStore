@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio - NexusPlay{% endblock %}
+
+{% block content %}
+<div style="background: linear-gradient(135deg, #10121a, #1a0b2e); border: 1px solid rgba(0, 229, 255, 0.3); padding: 5rem 2rem; border-radius: 16px; text-align: center; margin-bottom: 3rem; box-shadow: 0 10px 40px rgba(0, 229, 255, 0.1);">
+    <h1 style="font-size: 3.5rem; margin-bottom: 1rem; font-weight: 800;">Bienvenidos a <span style="color: var(--accent);">NexusPlay</span></h1>
+    <p style="font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem;">La comunidad abierta de juegos Indie. Descarga juegos gratis, califícalos y publica tus propias creaciones sin necesidad de cuentas ni pagos.</p>
+    <a href="{{ url_for('upload_game') }}" class="btn-buy" style="font-size: 1.1rem;">Publicar mi Juego</a>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+    <div class="category-filters">
+        <a href="{{ url_for('index', sort=current_sort) }}" class="filter-btn {% if current_category == 'Todas' %}active{% endif %}">Todas</a>
+        {% for cat in categories %}
+        <a href="{{ url_for('index', category=cat, sort=current_sort) }}" class="filter-btn {% if current_category == cat %}active{% endif %}">{{ cat }}</a>
+        {% endfor %}
+    </div>
+
+    <div>
+        <form method="GET" action="{{ url_for('index') }}" style="display: flex; gap: 0.5rem; align-items: center;">
+            {% if current_category and current_category != 'Todas' %}
+            <input type="hidden" name="category" value="{{ current_category }}">
+            {% endif %}
+            <label style="color: var(--text-muted);">Ordenar por:</label>
+            <select name="sort" onchange="this.form.submit()" style="padding: 0.5rem; background: rgba(0,0,0,0.5); color: white; border: 1px solid var(--border-color); border-radius: 6px;">
+                <option value="newest" {% if current_sort == 'newest' %}selected{% endif %}>Más Recientes</option>
+                <option value="popular" {% if current_sort == 'popular' %}selected{% endif %}>Más Descargados</option>
+                <option value="rated" {% if current_sort == 'rated' %}selected{% endif %}>Mejor Calificados</option>
+            </select>
+        </form>
+    </div>
+</div>
+
+<div class="games-grid">
+    {% for game in games %}
+    <a href="{{ url_for('game_details', game_id=game.id) }}" class="game-card">
+        <div class="price-tag" style="background: #00e676; color: #000;">GRATIS</div>
+        <img src="{{ url_for('serve_image', filename=game.image_filename) }}" alt="{{ game.title }}" class="card-img">
+        <div class="card-content">
+            <h2 class="card-title">{{ game.title }}</h2>
+            <div class="card-developer">por {{ game.developer }}</div>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                <div class="card-platform">{{ game.platform }}</div>
+                <div class="card-category">{{ game.category }}</div>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border-color); padding-top: 0.5rem;">
+                <div>⭐ {{ "%.1f"|format(game.avg_rating) }} / 5</div>
+                <div>📥 {{ game.downloads }}</div>
+            </div>
+        </div>
+    </a>
+    {% else %}
+    <p style="text-align: center; color: var(--text-muted); grid-column: 1 / -1; padding: 3rem; font-size: 1.2rem;">
+        No hay juegos aquí. ¡Sé el primero en publicar uno!
+    </p>
+    {% endfor %}
+</div>
+{% endblock %}
